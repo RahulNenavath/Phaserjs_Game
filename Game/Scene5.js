@@ -1,40 +1,29 @@
-class Scene4 extends Phaser.Scene {
+class Scene5 extends Phaser.Scene {
     constructor(){
-        super('Level1');
+        super('Level2');
     }
 
     preload() {
-
-        // load background
-        this.load.image('night_bg', 'assets/night_bg.png')
-
-        this.load.tilemapTiledJSON('map', 'assets/map.json');
-
-        this.load.image('next_button', 'assets/next.png')
-        // tiles in spritesheet 
-        this.load.spritesheet('tiles', 'assets/tiles.png', {frameWidth: 70, frameHeight: 70});
-        // simple coin image
-        this.load.image('coin', 'assets/coinGold.png');
-        // player animations
-        this.load.atlas('player', 'assets/player.png', 'assets/player.json');
+        this.load.image('End', 'assets/end.jpg')
+        this.load.audio('clap', 'assets/clapping.mp3')
     }
 
 
     create(){
 
-        this.bg = this.add.tileSprite(0,0,config.width,config.height, 'sunset_bg')
+        score = 0
+
+        this.bg = this.add.tileSprite(0,0,config.width,config.height, 'night_bg')
         this.bg.setOrigin(0,0)
         this.bg.setScrollFactor(0)
 
         GameTrack = this.sound.add('GameTrack')
-        
         GameTrack.loop = true
-
         GameTrack.play()
 
         coinCollectSound = this.sound.add('coinCollect')
 
-        this.add.text(0,0, 'Level1', {font: '35px Arial', fill:'red'});
+        this.add.text(0,0, 'Level2', {font: '35px Arial', fill:'red'});
 
         // load the map 
         map = this.make.tilemap({key: 'map'});
@@ -83,7 +72,6 @@ class Scene4 extends Phaser.Scene {
             key: 'jump',
             frames: [{key: 'player', frame: 'p1_jump'}],
             frameRate: 10,
-            repeat:-1
         });
 
 
@@ -122,7 +110,7 @@ class Scene4 extends Phaser.Scene {
             if(score == 18) {
                 console.log('Clicked');
                 GameTrack.stop()
-                this.scene.start('Level2')
+                this.scene.start('endGame')
                 
             } 
         });
@@ -131,8 +119,8 @@ class Scene4 extends Phaser.Scene {
 
     update(time, delta){
 
-        this.bg.tilePositionX = this.cameras.main.scrollX 
-
+        this.bg.tilePositionX = this.cameras.main.scrollX
+        
         if (cursors.left.isDown){
             player.body.setVelocityX(-200); // move left
             player.anims.play('walk', true); // play walk animation
@@ -153,5 +141,5 @@ class Scene4 extends Phaser.Scene {
             player.anims.play('idle', true);
         }
     }
-
+    
 }

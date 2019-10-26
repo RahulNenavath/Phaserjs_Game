@@ -4,7 +4,7 @@ class Scene2 extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('shenlong', 'assets/shen2.png')
+        this.load.image('Intro', 'assets/1.jpg')
         this.load.image('next_button', 'assets/next.png')
     }
 
@@ -12,7 +12,7 @@ class Scene2 extends Phaser.Scene {
         this.background = this.add.image(0,0,'background');
         this.background.setOrigin(0,0);
 
-        const start_button = this.add.image(125, 420, 'start_button');
+        const start_button = this.add.image(525, 490, 'start_button');
         start_button.setInteractive();
 
         start_button.on('pointerdown', () => { 

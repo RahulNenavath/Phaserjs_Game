@@ -9,7 +9,7 @@ var config = {
             debug: false
         }
     },
-    scene: [Scene1, Scene2, Scene3, Scene4]
+    scene: [Scene1, Scene2, Scene3, Scene4, Scene5, Scene6]
 };
  
 var game = new Phaser.Game(config);
@@ -21,3 +21,6 @@ var groundLayer, coinLayer;
 var text;
 var score = 0;
 var text;
+var GameTrack 
+var coinCollectSound
+var clap
